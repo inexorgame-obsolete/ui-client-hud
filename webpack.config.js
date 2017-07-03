@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -10,6 +11,12 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Inexor HUD',
+      filename: 'index.html'
+    })
+  ],
   module: {
     rules: [
       {
