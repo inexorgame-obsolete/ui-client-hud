@@ -59,6 +59,9 @@ export default class AbstractWidget extends EventEmitter{
 
   render() {
     $('#' + this.name).replaceWith(util.format('<div id="%s">%s</div>', this.name, Mustache.render(this.template, this.model)));
+    if ('effect' in this) {
+      this.effect();
+    }
   }
 
 }
