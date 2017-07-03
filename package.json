@@ -19,7 +19,8 @@
   "private": true,
   "homepage": "https://github.com/inexorgame/ui-client-hud#readme",
   "scripts": {
-    "build": "node_modules/.bin/webpack -p"
+    "build": "node_modules/.bin/webpack -p",
+    "dev": "node_modules/.bin/webpack-dev-server --progress --colors"
   },
   "dependencies": {
     "css-loader": "^0.28.4",
