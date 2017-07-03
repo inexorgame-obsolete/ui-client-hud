@@ -14,15 +14,14 @@ export default class InexorHud {
 
     // TODO: load widgets using tree configuration
     this.addWidget(new widgets.TimeWidget(this));
+    this.addWidget(new widgets.ScreenSizeWidget(this));
     
     setTimeout(this.init.bind(this), 200);
 
   }
 
   init() {
-    console.log('init');
     for (let i = 0; i < this.paths.length; i += 1) {
-      console.log(this.paths[i]);
       this.getNode(this.paths[i]);
     }
     this.render();
@@ -40,7 +39,7 @@ export default class InexorHud {
 
   onmessage(event) {
     let request = JSON.parse(event.data);
-    console.log(request);
+    // console.log(request);
     let node;
     switch (request.state) {
       case 'add':
@@ -49,26 +48,22 @@ export default class InexorHud {
         } catch(err) {
           console.log(err);
         }
-        // console.log(this.root.toObject());
         break;
       case 'sync':
         node = this.root.findNode(request.path);
         if (node != null) {
           try {
-            console.log('set');
             node.set(request.value);
           } catch(err) {
             console.log(err);
           }
         } else {
           try {
-            console.log('create');
             node = this.root.createRecursive(request.path, request.datatype, request.value, true);
           } catch(err) {
             console.log(err);
           }
         }
-        // console.log(this.root.toObject());
         break;
       default:
         break;

@@ -1,7 +1,9 @@
 import AbstractWidget from './AbstractWidget';
 import TimeWidget from './TimeWidget';
+import ScreenSizeWidget from './ScreenSizeWidget';
 
 module.exports = {
   AbstractWidget: AbstractWidget,
-  TimeWidget: TimeWidget
+  TimeWidget: TimeWidget,
+  ScreenSizeWidget: ScreenSizeWidget
 }
