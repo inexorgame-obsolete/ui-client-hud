@@ -15,6 +15,7 @@ export default class InexorHud {
     // TODO: load widgets using tree configuration
     this.addWidget(new widgets.TimeWidget(this));
     this.addWidget(new widgets.ScreenSizeWidget(this));
+    this.addWidget(new widgets.FullScreenWidget(this));
     
     setTimeout(this.init.bind(this), 200);
 

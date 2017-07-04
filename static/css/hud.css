@@ -13,3 +13,11 @@ html, body {
 	width: 200px;
 	font-size: 20pt;
 }
+
+#fullscreen-widget {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40pt;
+}
