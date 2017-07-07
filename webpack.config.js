@@ -15,6 +15,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Inexor HUD',
       filename: 'index.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ],
   module: {
