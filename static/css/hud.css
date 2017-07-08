@@ -6,12 +6,25 @@ html, body {
   text-shadow: 2px 2px 5px #000000;
 }
 
+.hud-widget {
+}
+
+#time-widget {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  width: 200px;
+  font-size: 12pt;
+  text-align: right;
+}
+
 #screen-size-widget {
 	position: absolute;
 	top: 1em;
 	right: 1em;
 	width: 200px;
 	font-size: 20pt;
+  text-align: right;
 }
 
 #fullscreen-widget,

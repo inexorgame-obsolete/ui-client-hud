@@ -5,6 +5,13 @@ import util from 'util';
 
 export default class AbstractWidget extends EventEmitter{
 
+  /**
+   * Constructs a new widget.
+   * @constructor
+   * @param {InexorHud} The inexor hud component
+   * @param {string} The widget name (and css class name)
+   * @param {string} The template
+   */ 
   constructor(hud, name, template = '') {
     super();
 
@@ -58,7 +65,7 @@ export default class AbstractWidget extends EventEmitter{
   }
 
   render() {
-    $('#' + this.name).replaceWith(util.format('<div id="%s">%s</div>', this.name, Mustache.render(this.template, this.model)));
+    $('#' + this.name).replaceWith(util.format('<div id="%s" class="hud-widget">%s</div>', this.name, Mustache.render(this.template, this.model)));
     if ('effect' in this) {
       this.effect();
     }
