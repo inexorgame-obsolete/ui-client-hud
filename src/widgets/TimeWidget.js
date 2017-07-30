@@ -1,11 +1,7 @@
-import $ from 'jquery';
-import util from 'util';
 import AbstractWidget from './AbstractWidget';
 
 export default class TimeWidget extends AbstractWidget {
-
   constructor(hud) {
-
     /**
      * @param {InexorHud} The inexor hud component
      * @param {string} The widget name (and css class name)
@@ -49,7 +45,7 @@ export default class TimeWidget extends AbstractWidget {
       // timeZoneName: 'short',
       hour: 'numeric',
       hour12: false,
-      minute: 'numeric'
+      minute: 'numeric',
     };
 
     setInterval(this.update.bind(this), 750);
@@ -61,7 +57,7 @@ export default class TimeWidget extends AbstractWidget {
    */
   update() {
     if (this.enabled) {
-      this.model.time = (new Date()).toLocaleTimeString(this.locale, this.options);;
+      this.model.time = (new Date()).toLocaleTimeString(this.locale, this.options);
       this.render();
     }
   }
@@ -77,5 +73,4 @@ export default class TimeWidget extends AbstractWidget {
   updateOptions(node, oldValue, newValue) {
     this.options[node.getName()] = newValue;
   }
-
 }

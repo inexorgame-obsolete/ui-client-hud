@@ -1,11 +1,9 @@
-import tree from '../../../src/tree';
-import widgets from './widgets';
+import tree from '@inexorgame/tree';
 import util from 'util';
+import widgets from './widgets';
 
 export default class InexorHud {
-
   constructor() {
-
     /**
      * Get the URL parameters.
      * 
@@ -13,7 +11,7 @@ export default class InexorHud {
      * host: The hostname of the Inexor Flex instance.
      * port: The port of the Inexor Flex instance.
      */
-    this.parameters = this.getUrlParameters();
+    this.parameters = InexorHud.getUrlParameters();
 
     this.root = new tree.Root();
     this.websocket = new WebSocket(util.format('ws://%s:%s/api/v1/ws/tree', this.parameters.host, this.parameters.port));
@@ -29,7 +27,6 @@ export default class InexorHud {
      * The list of tree paths.
      */
     this.paths = [];
-
   }
 
   onopen() {
@@ -45,14 +42,14 @@ export default class InexorHud {
   }
 
   onmessage(event) {
-    let request = JSON.parse(event.data);
+    const request = JSON.parse(event.data);
     // console.log(request);
     let node;
     switch (request.state) {
       case 'add':
         try {
           node = this.root.createRecursive(request.path, request.datatype, request.value, true);
-        } catch(err) {
+        } catch (err) {
           console.log(err);
         }
         break;
@@ -61,13 +58,13 @@ export default class InexorHud {
         if (node != null) {
           try {
             node.set(request.value);
-          } catch(err) {
+          } catch (err) {
             console.log(err);
           }
         } else {
           try {
             node = this.root.createRecursive(request.path, request.datatype, request.value, true);
-          } catch(err) {
+          } catch (err) {
             console.log(err);
           }
         }
@@ -89,7 +86,7 @@ export default class InexorHud {
 
   getNode(path) {
     this.websocket.send(JSON.stringify({
-      path: path
+      path,
     }));
   }
 
@@ -99,21 +96,20 @@ export default class InexorHud {
    * @name getParameters
    * @returns {object} The parameters.
    */
-  getUrlParameters() {
-    let parameters = {
-      'host': 'localhost',
-      'port': 31416,
-      'instanceId': null
+  static getUrlParameters() {
+    const parameters = {
+      host: 'localhost',
+      port: 31416,
+      instanceId: null,
     };
-    let query = window.location.search.split('?');
-    if (query.length == 2) {
-      let params = query[1].split('&');
-      for (var i = 0; i < params.length; i++) {
-        let kv = params[i].split('=');
+    const query = window.location.search.split('?');
+    if (query.length === 2) {
+      const params = query[1].split('&');
+      for (let i = 0; i < params.length; i += 1) {
+        const kv = params[i].split('=');
         parameters[kv[0]] = kv[1];
       }
     }
     return parameters;
   }
-
 }

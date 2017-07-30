@@ -26,13 +26,26 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['es2015'] },
-        }],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { presets: ['es2015'] },
+          }, {
+            loader: 'eslint-loader'
+          }
+        ],
       }, {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+              convertToAbsoluteUrls: true,
+            },
+          },
+          'css-loader'
+        ],
       },
     ],
   },

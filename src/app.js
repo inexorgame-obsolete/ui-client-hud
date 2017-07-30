@@ -1,4 +1,7 @@
-import styles from '../static/css/hud.css';
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "style" }] */
+
+import style from '../static/css/hud.css';
 import InexorHud from './InexorHud';
 
-let hud = new InexorHud();
+const hud = new InexorHud();
+hud.render();

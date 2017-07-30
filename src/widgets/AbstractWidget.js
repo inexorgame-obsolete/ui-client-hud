@@ -3,8 +3,7 @@ import EventEmitter from 'events';
 import Mustache from 'mustache';
 import util from 'util';
 
-export default class AbstractWidget extends EventEmitter{
-
+export default class AbstractWidget extends EventEmitter {
   /**
    * Constructs a new widget.
    * @constructor
@@ -29,7 +28,7 @@ export default class AbstractWidget extends EventEmitter{
 
     // The model
     this.model = {
-      root: this.hud.root
+      root: this.hud.root,
     };
 
     // The tree node paths to
@@ -37,7 +36,6 @@ export default class AbstractWidget extends EventEmitter{
 
     // Add dom node
     $('body').append(util.format('<div id="%s">Loading %s...</div>', name, name));
-
   }
 
   /**
@@ -48,7 +46,7 @@ export default class AbstractWidget extends EventEmitter{
     this.hud.paths.push(path);
     // Listen on added nodes
     this.root.on('add', (node) => {
-      if (node.getPath() == path) {
+      if (node.getPath() === path) {
         node.on('postSet', ({ oldValue, newValue }) => {
           if (updateMethod != null) {
             updateMethod(node, oldValue, newValue);
@@ -65,10 +63,9 @@ export default class AbstractWidget extends EventEmitter{
   }
 
   render() {
-    $('#' + this.name).replaceWith(util.format('<div id="%s" class="hud-widget">%s</div>', this.name, Mustache.render(this.template, this.model)));
+    $(`#${this.name}`).replaceWith(util.format('<div id="%s" class="hud-widget">%s</div>', this.name, Mustache.render(this.template, this.model)));
     if ('effect' in this) {
       this.effect();
     }
   }
-
 }
