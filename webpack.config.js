@@ -25,17 +25,23 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: [/node_modules/],
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules/@inexorgame/tree")
+        ],
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['es2015'] },
+            options: {
+              presets: ['es2015']
+            },
           }, {
             loader: 'eslint-loader'
           }
         ],
       }, {
         test: /\.css$/,
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'style-loader',
